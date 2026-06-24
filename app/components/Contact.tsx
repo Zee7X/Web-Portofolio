@@ -4,17 +4,20 @@ const LINKS = [
   {
     label: "GitHub",
     href: "https://github.com/Zee7X",
-    description: "See my code",
+    description: "See my code repository",
+    code: "(G;/)"
   },
   {
     label: "Email",
     href: "mailto:rizick076@gmail.com",
     description: "Best for project inquiries",
+    code: "(E;/)"
   },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/rizick-z-123594327/",
     description: "Professional background",
+    code: "(L;/)"
   },
 ];
 
@@ -23,53 +26,61 @@ export default function Contact() {
     <section
       id="contact"
       style={{
-        padding: "8rem 2rem",
-        maxWidth: "900px",
-        margin: "0 auto",
-        borderTop: "1px solid var(--border)",
+        background: "var(--cream-white)",
+        color: "var(--crimson-red)",
+        padding: "8rem 2.5rem",
+        borderTop: "1.5px solid rgba(230, 53, 47, 0.25)",
       }}
     >
-      <p
-        style={{
-          fontSize: "12px",
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: "var(--muted)",
-          marginBottom: "3rem",
-        }}
-      >
-        Contact
-      </p>
-
       <div
         style={{
+          maxWidth: "1400px",
+          margin: "0 auto",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "5rem",
+          gridTemplateColumns: "1.2fr 1fr",
+          gap: "6rem",
           alignItems: "start",
         }}
+        className="contact-grid"
       >
-        <div>
-          <h2
+        {/* Left Side: Call to action */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", fontWeight: 700, textTransform: "uppercase" }}>
+              ■ 03 / CONNECT WITH ME
+            </span>
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(42px, 8vw, 92px)",
+                fontWeight: 900,
+                lineHeight: "0.85",
+                textTransform: "uppercase",
+                letterSpacing: "-0.04em",
+              }}
+            >
+              LET&apos;S BUILD
+              <br />
+              TOGETHER.
+            </h2>
+          </div>
+          
+          <p
             style={{
-              fontSize: "36px",
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
-              marginBottom: "1rem",
-              lineHeight: 1.2,
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(18px, 2.5vw, 28px)",
+              fontStyle: "italic",
+              lineHeight: "1.4",
+              maxWidth: "500px",
+              opacity: 0.9,
             }}
           >
-            Let&apos;s work
-            <br />
-            together.
-          </h2>
-          <p style={{ color: "var(--muted)", fontSize: "15px", lineHeight: 1.7 }}>
-            Open to freelance projects, collaboration, and full-time
-            opportunities. I respond within 24 hours.
+            Open to freelance projects, engineering collaboration, and full-time fullstack opportunities.
           </p>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
+        {/* Right Side: Brutalist Interactive Link List */}
+        <div style={{ display: "flex", flexDirection: "column" }}>
           {LINKS.map((link) => (
             <a
               key={link.label}
@@ -80,53 +91,54 @@ export default function Contact() {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: "1.25rem 0",
-                borderBottom: "1px solid var(--border)",
-                transition: "border-color 0.3s, transform 0.3s",
-                gap: "1rem",
+                padding: "2rem 0",
+                borderBottom: "1.5px solid rgba(230, 53, 47, 0.25)",
+                transition: "transform 0.3s ease, border-color 0.3s ease",
+                gap: "1.5rem",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.transform = "translateX(6px)";
-                el.style.borderColor = "rgba(99, 102, 241, 0.4)";
-                const arrow = el.querySelector(".arrow-icon") as HTMLElement;
-                if (arrow) {
-                  arrow.style.transform = "translate(2px, -2px)";
-                  arrow.style.color = "var(--accent)";
-                }
+                el.style.transform = "translateX(10px)";
+                el.style.borderColor = "var(--crimson-red)";
+                const arrow = el.querySelector(".contact-arrow") as HTMLElement;
+                if (arrow) arrow.style.transform = "translate(4px, -4px)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement;
                 el.style.transform = "translateX(0)";
-                el.style.borderColor = "var(--border)";
-                const arrow = el.querySelector(".arrow-icon") as HTMLElement;
-                if (arrow) {
-                  arrow.style.transform = "none";
-                  arrow.style.color = "var(--muted)";
-                }
+                el.style.borderColor = "rgba(230, 53, 47, 0.25)";
+                const arrow = el.querySelector(".contact-arrow") as HTMLElement;
+                if (arrow) arrow.style.transform = "none";
               }}
             >
-              <div>
-                <p
-                  style={{
-                    fontWeight: 600,
-                    fontSize: "15px",
-                    color: "var(--fg)",
-                    marginBottom: "2px",
-                  }}
-                >
-                  {link.label}
-                </p>
-                <p style={{ fontSize: "13px", color: "var(--muted)" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: "0.5rem" }}>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", opacity: 0.8 }}>
+                    {link.code}
+                  </span>
+                  <h4
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "24px",
+                      fontWeight: 800,
+                      textTransform: "uppercase",
+                      letterSpacing: "-0.01em",
+                    }}
+                  >
+                    {link.label}
+                  </h4>
+                </div>
+                <p style={{ fontSize: "13.5px", opacity: 0.85, textTransform: "uppercase", fontFamily: "var(--font-mono)" }}>
                   {link.description}
                 </p>
               </div>
+
               <span
-                className="arrow-icon"
+                className="contact-arrow"
                 style={{
-                  color: "var(--muted)",
-                  fontSize: "20px",
-                  transition: "transform 0.2s, color 0.2s",
+                  fontSize: "32px",
+                  lineHeight: 1,
+                  transition: "transform 0.25s ease",
                 }}
               >
                 ↗
@@ -136,22 +148,35 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Footer */}
+      {/* Footer block */}
       <div
         style={{
-          marginTop: "6rem",
-          paddingTop: "2rem",
-          borderTop: "1px solid var(--border)",
+          marginTop: "8rem",
+          paddingTop: "2.5rem",
+          borderTop: "1.5px solid rgba(230, 53, 47, 0.25)",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          color: "var(--muted)",
-          fontSize: "13px",
+          fontFamily: "var(--font-mono)",
+          fontSize: "12px",
+          textTransform: "uppercase",
+          letterSpacing: "0.05em",
+          maxWidth: "1400px",
+          margin: "8rem auto 0 auto",
         }}
       >
-        <span>Rizick · Fullstack Developer</span>
-        <span>© {new Date().getFullYear()}</span>
+        <span>Rizick Sabillah · Developer Spec</span>
+        <span>© {new Date().getFullYear()} [PROD SYSTEMS]</span>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .contact-grid {
+            grid-template-columns: 1fr !important;
+            gap: 4rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

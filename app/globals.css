@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0b0c10;
-  --fg: #f3f4f6;
-  --muted: #9ca3af;
+  --burnt-orange: #d14d18;
+  --canary-yellow: #efdc53;
+  --mustard-yellow: #FED93B;
+  --crimson-red: #E6352F;
+  --cream-white: #FAF0E6;
+  --charcoal-black: #121212;
+  
+  --font-body: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-display: 'Syne', sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'Space Mono', monospace;
+  
+  --bg: var(--charcoal-black);
+  --fg: var(--cream-white);
   --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.18);
-  --accent: #6366f1;
-  --accent-secondary: #06b6d4;
-  --card-bg: rgba(17, 18, 25, 0.6);
-  --card-bg-hover: rgba(24, 25, 35, 0.75);
 }
 
 * {
@@ -24,27 +30,71 @@ html {
 
 body {
   background: var(--bg);
-  background-image: 
-    radial-gradient(circle at 15% 20%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
-    linear-gradient(rgba(255, 255, 255, 0.008) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.008) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
-  background-attachment: fixed;
   color: var(--fg);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-body);
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
+/* Film grain effect overlay */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.055;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
 ::selection {
-  background: var(--accent);
+  background: var(--crimson-red);
   color: white;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Marquee / Ticker animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 35s linear infinite;
+}
+
+/* Smooth color transitions for sections */
+section {
+  position: relative;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Custom Webkit scrollbar matching brutalist styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
 }

@@ -199,472 +199,310 @@ export default function About() {
     <section
       id="about"
       style={{
-        padding: "8rem 2rem",
-        maxWidth: "900px",
-        margin: "0 auto",
-        borderTop: "1px solid var(--border)",
+        background: "var(--charcoal-black)",
+        color: "#fff",
+        padding: "8rem 2.5rem",
+        borderTop: "1.5px solid rgba(255, 51, 51, 0.25)",
       }}
     >
-      <p
-        style={{
-          fontSize: "12px",
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: "var(--muted)",
-          marginBottom: "3rem",
-        }}
-      >
-        About
-      </p>
-
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
+          maxWidth: "1400px",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
           gap: "5rem",
-          alignItems: "start",
         }}
       >
-        {/* Bio */}
-        <div>
-          <h2
+        {/* Header Block */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            borderBottom: "1.5px solid rgba(255, 51, 51, 0.25)",
+            paddingBottom: "2rem",
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--crimson-red)", fontWeight: 700 }}>
+              ■ 02 / ANALYSIS & SYSTEMS
+            </span>
+            <h2
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(36px, 6vw, 72px)",
+                fontWeight: 900,
+                lineHeight: "0.95",
+                textTransform: "uppercase",
+                letterSpacing: "-0.03em",
+                color: "var(--crimson-red)",
+              }}
+            >
+              STACK & METRICS
+            </h2>
+          </div>
+          <div
             style={{
-              fontSize: "32px",
-              fontWeight: 800,
-              letterSpacing: "-0.02em",
-              marginBottom: "1.5rem",
-              lineHeight: 1.2,
-              color: "var(--fg)",
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(20px, 2.5vw, 32px)",
+              fontStyle: "italic",
+              color: "var(--crimson-red)",
+              lineHeight: 1,
             }}
           >
-            Building real things,
-            <br />
-            from studies to industry.
-          </h2>
+            Engineering profile.
+          </div>
+        </div>
+
+        {/* 3-Column Editorial Grid */}
+        <div
+          className="about-editorial-grid"
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1.2fr 1fr 1.5fr",
+            gap: "3.5rem",
+            alignItems: "start",
+          }}
+        >
+          {/* Column 1: Bio */}
           <div
             style={{
               display: "flex",
               flexDirection: "column",
-              gap: "1rem",
-              color: "var(--muted)",
-              fontSize: "15px",
-              lineHeight: 1.7,
+              gap: "2rem",
             }}
           >
-            <p>
-              I&apos;m Rizick, a Fullstack Developer and Informatics Engineering graduate (D3)
-              from Politeknik Negeri Cilacap. I specialize in building robust web backends, B2B portals, and mobile applications, bridging modern frontend interfaces with secure and optimized backend systems.
-            </p>
-            <p>
-              At PT Murni Solusindo Nusantara, I actively develop the Indoconnex B2B connection platform—building the member portal with Laravel and Tailwind CSS, and the CMS panel using React and Inertia.js. Previously, at CV Entwo Electrical & Engineering, I developed CodeIgniter 4 REST APIs to consolidate 24 internal web applications into a single platform (PLTU S2P Central App).
-            </p>
-            <p>
-              I also build mobile applications using Flutter (such as an accessibility-focused digital literacy app utilizing Firebase, and an e-commerce application with Supabase), and I am comfortable handling database management, real-time notifications with Laravel Reverb, and deployment workflows.
-            </p>
-          </div>
-        </div>
-
-        {/* Skills Cards Column */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "1rem",
-          }}
-        >
-          {Object.entries(SKILLS).map(([group, items]) => {
-            let Icon = Server;
-            let accentGlow = "rgba(99, 102, 241, 0.35)";
-            let iconColor = "#818cf8";
-            if (group.includes("Frontend")) {
-              Icon = Smartphone;
-              accentGlow = "rgba(6, 182, 212, 0.35)";
-              iconColor = "#22d3ee";
-            } else if (group.includes("Infra")) {
-              Icon = Wrench;
-              accentGlow = "rgba(16, 185, 129, 0.35)";
-              iconColor = "#34d399";
-            } else if (group.includes("Integrations")) {
-              Icon = Puzzle;
-              accentGlow = "rgba(245, 158, 11, 0.35)";
-              iconColor = "#fbbf24";
-            }
-
-            return (
-              <div
-                key={group}
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--crimson-red)" }}>
+                ■ BIOGRAPHY
+              </span>
+              <h3
                 style={{
-                  background: "var(--card-bg)",
-                  backdropFilter: "blur(12px)",
-                  border: "1px solid var(--border)",
-                  borderRadius: "16px",
-                  padding: "1.5rem",
-                  transition: "transform 0.3s, border-color 0.3s, box-shadow 0.3s",
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.transform = "translateY(-3px)";
-                  el.style.borderColor = accentGlow;
-                  el.style.boxShadow = `0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px ${accentGlow.replace("0.35", "0.05")}`;
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.transform = "translateY(0)";
-                  el.style.borderColor = "var(--border)";
-                  el.style.boxShadow = "none";
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "30px",
+                  fontStyle: "italic",
+                  lineHeight: 1.1,
                 }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1rem" }}>
-                  <Icon size={16} style={{ color: iconColor }} />
-                  <p
-                    style={{
-                      fontSize: "11px",
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      color: "var(--fg)",
-                      fontWeight: 700,
-                    }}
-                  >
-                    {group}
-                  </p>
-                </div>
-                <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-                  {items.map((skill) => (
-                    <span
-                      key={skill}
+                Building real systems, D3 studies to industry.
+              </h3>
+            </div>
+            
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1.25rem",
+                fontSize: "14.5px",
+                lineHeight: "1.7",
+                color: "#e2e8f0",
+              }}
+            >
+              <p>
+                I&apos;m Rizick, a Fullstack Developer and Informatics Engineering graduate (D3)
+                from Politeknik Negeri Cilacap. I specialize in building robust web backends, B2B portals, and mobile applications, bridging modern frontend interfaces with secure and optimized backend systems.
+              </p>
+              <p>
+                At PT Murni Solusindo Nusantara, I actively develop the Indoconnex B2B connection platform—building the member portal with Laravel and Tailwind CSS, and the CMS panel using React and Inertia.js. Previously, at CV Entwo Electrical & Engineering, I developed CodeIgniter 4 REST APIs to consolidate 24 internal web applications into a single platform (PLTU S2P Central App).
+              </p>
+              <p>
+                I also build mobile applications using Flutter (such as an accessibility-focused digital literacy app utilizing Firebase, and an e-commerce application with Supabase), and I am comfortable handling database management, real-time notifications with Laravel Reverb, and deployment workflows.
+              </p>
+            </div>
+          </div>
+
+          {/* Column 2: Tech Stack / Skills (SVG logos fully retained!) */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "2.5rem",
+              borderLeft: "1.5px solid rgba(255, 51, 51, 0.15)",
+              paddingLeft: "2.5rem",
+            }}
+            className="about-col-border"
+          >
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+              <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--crimson-red)" }}>
+                ■ CAPABILITIES
+              </span>
+              <h3
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "30px",
+                  fontStyle: "italic",
+                  lineHeight: 1.1,
+                }}
+              >
+                Core Technologies
+              </h3>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem" }}>
+              {Object.entries(SKILLS).map(([group, items]) => {
+                let accentColor = "var(--crimson-red)";
+                if (group.includes("Frontend")) accentColor = "#22d3ee";
+                if (group.includes("Infra")) accentColor = "#34d399";
+                if (group.includes("Integrations")) accentColor = "#fbbf24";
+
+                return (
+                  <div key={group} style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                    <h4
                       style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        fontSize: "11.5px",
-                        padding: "4px 10px",
-                        background: "rgba(255, 255, 255, 0.02)",
-                        border: "1px solid rgba(255, 255, 255, 0.05)",
-                        borderRadius: "100px",
-                        color: "rgba(255, 255, 255, 0.8)",
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "11px",
+                        fontWeight: 700,
+                        textTransform: "uppercase",
+                        color: accentColor,
+                        letterSpacing: "0.05em",
                       }}
                     >
-                      {getSkillIcon(skill)}
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+                      {group}
+                    </h4>
+                    <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                      {items.map((skill) => (
+                        <span
+                          key={skill}
+                          style={{
+                            display: "inline-flex",
+                            alignItems: "center",
+                            fontSize: "11px",
+                            padding: "4px 10px",
+                            background: "rgba(255, 255, 255, 0.03)",
+                            border: "1px solid rgba(255, 255, 255, 0.08)",
+                            borderRadius: "100px",
+                            color: "#f3f4f6",
+                          }}
+                        >
+                          {getSkillIcon(skill)}
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
 
-      {/* Experience & Education Grid */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "5rem",
-          marginTop: "6rem",
-          borderTop: "1px solid var(--border)",
-          paddingTop: "4rem",
-          alignItems: "start",
-        }}
-      >
-        {/* Experience Column */}
-        <div style={{ position: "relative" }}>
+          {/* Column 3: Work Experience & Education (Retaining all details) */}
           <div
             style={{
               display: "flex",
-              alignItems: "center",
-              gap: "0.75rem",
-              marginBottom: "2.5rem",
+              flexDirection: "column",
+              gap: "3rem",
+              borderLeft: "1.5px solid rgba(255, 51, 51, 0.15)",
+              paddingLeft: "2.5rem",
             }}
+            className="about-col-border"
           >
-            <Briefcase size={18} style={{ color: "var(--accent)" }} />
-            <p
-              style={{
-                fontSize: "12px",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "var(--muted)",
-                fontWeight: 600,
-                margin: 0,
-              }}
-            >
-              Experience
-            </p>
-          </div>
-
-          {/* Timeline Connector Line */}
-          <div
-            style={{
-              position: "absolute",
-              left: "7px",
-              top: "3rem",
-              bottom: "1rem",
-              width: "1px",
-              background: "linear-gradient(to bottom, rgba(99, 102, 241, 0.2) 0%, rgba(99, 102, 241, 0.02) 100%)",
-            }}
-          />
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", paddingLeft: "1.75rem" }}>
-            {/* PT Murni Solusindo Nusantara */}
-            <div
-              style={{
-                position: "relative",
-                transition: "transform 0.3s",
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.transform = "translateX(4px)";
-                const dot = el.querySelector(".timeline-dot") as HTMLElement;
-                if (dot) dot.style.transform = "translateY(-50%) scale(1.3)";
-                const line = el.querySelector(".active-line") as HTMLElement;
-                if (line) line.style.borderColor = "var(--accent)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.transform = "translateX(0)";
-                const dot = el.querySelector(".timeline-dot") as HTMLElement;
-                if (dot) dot.style.transform = "translateY(-50%) scale(1)";
-                const line = el.querySelector(".active-line") as HTMLElement;
-                if (line) line.style.borderColor = "rgba(99, 102, 241, 0.25)";
-              }}
-            >
-              {/* Node Dot */}
-              <div
-                className="timeline-dot"
-                style={{
-                  position: "absolute",
-                  left: "-25px",
-                  top: "22px",
-                  transform: "translateY(-50%)",
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  background: "#818cf8",
-                  boxShadow: "0 0 8px #818cf8",
-                  transition: "transform 0.2s",
-                  zIndex: 2,
-                }}
-              />
-
-              <div
-                className="active-line"
-                style={{
-                  borderLeft: "2px solid rgba(99, 102, 241, 0.25)",
-                  paddingLeft: "1.25rem",
-                  transition: "border-color 0.3s",
-                }}
-              >
-                <div
+            {/* Experience Group */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--crimson-red)" }}>
+                  ■ CAREER TIMELINE
+                </span>
+                <h3
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "baseline",
-                    marginBottom: "0.25rem",
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "30px",
+                    fontStyle: "italic",
+                    lineHeight: 1.1,
                   }}
                 >
-                  <h4 style={{ fontSize: "16px", fontWeight: 700, color: "var(--fg)" }}>
+                  Work History
+                </h3>
+              </div>
+
+              {/* PT Murni Solusindo Nusantara */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                  <h4 style={{ fontSize: "15px", fontWeight: 700 }}>
                     PT Murni Solusindo Nusantara
                   </h4>
-                  <span style={{ fontSize: "12px", color: "var(--muted)", fontWeight: 500 }}>
-                    Nov 2025 – Present
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", opacity: 0.7 }}>
+                    2025 – Present
                   </span>
                 </div>
-                <p style={{ fontSize: "13.5px", color: "rgba(99, 102, 241, 0.85)", fontWeight: 600, marginBottom: "0.5rem" }}>
+                <p style={{ fontSize: "12px", fontFamily: "var(--font-mono)", color: "var(--crimson-red)", textTransform: "uppercase" }}>
                   Fullstack Web Developer
                 </p>
-                <p style={{ fontSize: "13.5px", color: "var(--muted)", lineHeight: 1.6 }}>
-                  Developing and maintaining <strong>Indoconnex</strong>, a B2B connection platform. Built the member portal (Laravel & Tailwind) featuring articles, marketplace (Buy & Sell), jobs, charity, and a real-time social timeline. Developed the back-office CMS (React & Inertia.js) with a custom CMS builder, SEO configurations, email broadcasting, and content/user moderation.
+                <p style={{ fontSize: "13px", lineHeight: "1.6", color: "#cbd5e1" }}>
+                  Developing and maintaining <strong>Indoconnex</strong> B2B Network. Created member portals, marketplaces, job modules, real-time social streams (Laravel, Tailwind, MySQL, Reverb) and CMS panels (React, Inertia.js).
                 </p>
               </div>
-            </div>
 
-            {/* CV Entwo Electrical & Engineering */}
-            <div
-              style={{
-                position: "relative",
-                transition: "transform 0.3s",
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.transform = "translateX(4px)";
-                const dot = el.querySelector(".timeline-dot") as HTMLElement;
-                if (dot) dot.style.transform = "translateY(-50%) scale(1.3)";
-                const line = el.querySelector(".active-line") as HTMLElement;
-                if (line) line.style.borderColor = "var(--accent)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.transform = "translateX(0)";
-                const dot = el.querySelector(".timeline-dot") as HTMLElement;
-                if (dot) dot.style.transform = "translateY(-50%) scale(1)";
-                const line = el.querySelector(".active-line") as HTMLElement;
-                if (line) line.style.borderColor = "rgba(99, 102, 241, 0.25)";
-              }}
-            >
-              {/* Node Dot */}
-              <div
-                className="timeline-dot"
-                style={{
-                  position: "absolute",
-                  left: "-25px",
-                  top: "22px",
-                  transform: "translateY(-50%)",
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  background: "#818cf8",
-                  boxShadow: "0 0 8px #818cf8",
-                  transition: "transform 0.2s",
-                  zIndex: 2,
-                }}
-              />
-
-              <div
-                className="active-line"
-                style={{
-                  borderLeft: "2px solid rgba(99, 102, 241, 0.25)",
-                  paddingLeft: "1.25rem",
-                  transition: "border-color 0.3s",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "baseline",
-                    marginBottom: "0.25rem",
-                  }}
-                >
-                  <h4 style={{ fontSize: "16px", fontWeight: 700, color: "var(--fg)" }}>
+              {/* CV Entwo Electrical & Engineering */}
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                  <h4 style={{ fontSize: "15px", fontWeight: 700 }}>
                     CV Entwo Electrical & Engineering
                   </h4>
-                  <span style={{ fontSize: "12px", color: "var(--muted)", fontWeight: 500 }}>
-                    Jul 2024 – Oct 2025
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", opacity: 0.7 }}>
+                    2024 – 2025
                   </span>
                 </div>
-                <p style={{ fontSize: "13.5px", color: "rgba(99, 102, 241, 0.85)", fontWeight: 600, marginBottom: "0.5rem" }}>
+                <p style={{ fontSize: "12px", fontFamily: "var(--font-mono)", color: "var(--crimson-red)", textTransform: "uppercase" }}>
                   Backend Developer
                 </p>
-                <p style={{ fontSize: "13.5px", color: "var(--muted)", lineHeight: 1.6 }}>
-                  Developed and maintained <strong>PLTU S2P Central App</strong>, an enterprise platform consolidating 24 internal web applications for a power plant. Engineered robust backend REST APIs using CodeIgniter 4.
+                <p style={{ fontSize: "13px", lineHeight: "1.6", color: "#cbd5e1" }}>
+                  Developed CI4 REST APIs for <strong>PLTU S2P Central App</strong>, consolidating 24 internal web applications (permits, environment tracking, LK3, attendance) into a single enterprise system.
                 </p>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Education Column */}
-        <div style={{ position: "relative" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.75rem",
-              marginBottom: "2.5rem",
-            }}
-          >
-            <GraduationCap size={18} style={{ color: "var(--accent-secondary)" }} />
-            <p
-              style={{
-                fontSize: "12px",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: "var(--muted)",
-                fontWeight: 600,
-                margin: 0,
-              }}
-            >
-              Education
-            </p>
-          </div>
-
-          {/* Timeline Connector Line */}
-          <div
-            style={{
-              position: "absolute",
-              left: "7px",
-              top: "3rem",
-              bottom: "1rem",
-              width: "1px",
-              background: "linear-gradient(to bottom, rgba(6, 182, 212, 0.2) 0%, rgba(6, 182, 212, 0.02) 100%)",
-            }}
-          />
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem", paddingLeft: "1.75rem" }}>
-            {/* Politeknik Negeri Cilacap */}
-            <div
-              style={{
-                position: "relative",
-                transition: "transform 0.3s",
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.transform = "translateX(4px)";
-                const dot = el.querySelector(".timeline-dot") as HTMLElement;
-                if (dot) dot.style.transform = "translateY(-50%) scale(1.3)";
-                const line = el.querySelector(".active-line") as HTMLElement;
-                if (line) line.style.borderColor = "var(--accent-secondary)";
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement;
-                el.style.transform = "translateX(0)";
-                const dot = el.querySelector(".timeline-dot") as HTMLElement;
-                if (dot) dot.style.transform = "translateY(-50%) scale(1)";
-                const line = el.querySelector(".active-line") as HTMLElement;
-                if (line) line.style.borderColor = "rgba(6, 182, 212, 0.25)";
-              }}
-            >
-              {/* Node Dot */}
-              <div
-                className="timeline-dot"
-                style={{
-                  position: "absolute",
-                  left: "-25px",
-                  top: "22px",
-                  transform: "translateY(-50%)",
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  background: "#22d3ee",
-                  boxShadow: "0 0 8px #22d3ee",
-                  transition: "transform 0.2s",
-                  zIndex: 2,
-                }}
-              />
-
-              <div
-                className="active-line"
-                style={{
-                  borderLeft: "2px solid rgba(6, 182, 212, 0.25)",
-                  paddingLeft: "1.25rem",
-                  transition: "border-color 0.3s",
-                }}
-              >
-                <div
+            {/* Education Group */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", borderTop: "1px solid rgba(255, 255, 255, 0.1)", paddingTop: "2rem" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.25rem" }}>
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--crimson-red)" }}>
+                  ■ ACADEMICS
+                </span>
+                <h3
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "baseline",
-                    marginBottom: "0.25rem",
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "26px",
+                    fontStyle: "italic",
+                    lineHeight: 1.1,
                   }}
                 >
-                  <h4 style={{ fontSize: "16px", fontWeight: 700, color: "var(--fg)" }}>
+                  Formal Education
+                </h3>
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                  <h4 style={{ fontSize: "15px", fontWeight: 700 }}>
                     Politeknik Negeri Cilacap
                   </h4>
-                  <span style={{ fontSize: "12px", color: "var(--muted)", fontWeight: 500 }}>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", opacity: 0.7 }}>
                     2020 – 2023
                   </span>
                 </div>
-                <p style={{ fontSize: "13.5px", color: "rgba(6, 182, 212, 0.85)", fontWeight: 600, marginBottom: "0.5rem" }}>
-                  D3 Teknik Informatika (Associate Degree in Informatics Engineering)
+                <p style={{ fontSize: "12px", fontFamily: "var(--font-mono)", color: "var(--crimson-red)", textTransform: "uppercase" }}>
+                  D3 Teknik Informatika (GPA: 3.62 / 4.00)
                 </p>
-                <p style={{ fontSize: "13.5px", color: "var(--muted)", lineHeight: 1.6 }}>
-                  GPA (IPK): 3.62/4.00. Focused on database design, web application development, networking, and software engineering principles.
+                <p style={{ fontSize: "13px", lineHeight: "1.6", color: "#cbd5e1" }}>
+                  Associate Degree in Informatics Engineering. Specialized in database design, web application systems, networking, and software engineering.
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .about-editorial-grid {
+            grid-template-columns: 1fr !important;
+            gap: 3rem !important;
+          }
+          .about-col-border {
+            border-left: none !important;
+            padding-left: 0 !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

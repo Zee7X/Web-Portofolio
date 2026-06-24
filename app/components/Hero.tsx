@@ -26,7 +26,6 @@ function useTypewriter(phrases: string[], speed = 60, pause = 2000) {
             setDisplay(current.slice(0, charIndex + 1));
             setCharIndex((c) => c + 1);
           } else {
-            // Wait, then start deleting
             setTimeout(() => setDeleting(true), pause);
           }
         } else {
@@ -53,141 +52,307 @@ export default function Hero() {
 
   return (
     <section
+      id="hero"
       style={{
         minHeight: "100vh",
+        background: "var(--burnt-orange)",
+        color: "var(--canary-yellow)",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        padding: "0 2rem",
-        maxWidth: "860px",
-        margin: "0 auto",
+        justifyContent: "space-between",
+        padding: "6rem 2rem 2rem 2rem",
+        overflow: "hidden",
       }}
     >
-      {/* Eyebrow */}
-      <p
+      {/* Top Section Layout */}
+      <div
+        className="hero-grid"
         style={{
-          fontSize: "13px",
-          letterSpacing: "0.12em",
-          textTransform: "uppercase",
-          color: "var(--muted)",
-          marginBottom: "2rem",
+          display: "grid",
+          gridTemplateColumns: "1fr 2fr 1fr",
+          gap: "2rem",
+          alignItems: "center",
+          flexGrow: 1,
+          maxWidth: "1400px",
+          margin: "0 auto",
+          width: "100%",
+          position: "relative",
+          zIndex: 10,
         }}
       >
-        Fullstack Developer · Indonesia
-      </p>
+        {/* Left Column: Branding / Info */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "6rem" }}>
+          {/* Circular Branding Logo */}
+          <div style={{ display: "inline-block" }}>
+            <svg
+              viewBox="0 0 100 100"
+              width="90"
+              height="90"
+              fill="none"
+              stroke="var(--canary-yellow)"
+              strokeWidth="2.5"
+              style={{ opacity: 0.95 }}
+            >
+              <circle cx="50" cy="50" r="45" strokeWidth="2.5" />
+              <circle cx="50" cy="50" r="35" strokeDasharray="4 4" />
+              <text
+                x="50%"
+                y="58%"
+                dominantBaseline="middle"
+                textAnchor="middle"
+                fontSize="38"
+                fontWeight="900"
+                fontFamily="var(--font-display)"
+                fill="var(--canary-yellow)"
+              >
+                R
+              </text>
+            </svg>
+          </div>
 
-      {/* Main headline */}
-      {/* Main headline */}
-      <h1
-        style={{
-          fontSize: "clamp(40px, 7vw, 72px)",
-          fontWeight: 800,
-          lineHeight: 1.1,
-          letterSpacing: "-0.03em",
-          color: "var(--fg)",
-          marginBottom: "1.5rem",
-        }}
-      >
-        I build
-        <br />
-        <span style={{ position: "relative" }}>
-          <span
+          {/* Metadata Block B */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "13px",
+                fontWeight: 700,
+                textTransform: "uppercase",
+              }}
+            >
+              ■ (B;/)
+            </p>
+            <p
+              style={{
+                fontSize: "12px",
+                lineHeight: "1.5",
+                opacity: 0.9,
+                letterSpacing: "0.02em",
+                textTransform: "uppercase",
+                maxWidth: "280px",
+              }}
+            >
+              INVENTIVE AND ROBUST. EVERY LINE OF CODE IS OPTIMIZED TO DRIVE VALUE AND SHAPE HIGH-PERFORMANCE WEB APPLICATIONS.
+            </p>
+          </div>
+        </div>
+
+        {/* Center Column: Big Cinematic Portrait & Overlay Text */}
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            minHeight: "450px",
+          }}
+        >
+          {/* Portrait Image with CSS Filters to integrate with burnt orange background */}
+          <div
             style={{
-              backgroundImage: "linear-gradient(135deg, #818cf8 0%, #22d3ee 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              paddingRight: "6px",
-              display: "inline-block",
+              width: "100%",
+              maxWidth: "480px",
+              aspectRatio: "1/1",
+              borderRadius: "12px",
+              overflow: "hidden",
+              position: "relative",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
+              background: "#000",
             }}
           >
-            {typed}
-          </span>
-          <span
-            style={{
-              display: "inline-block",
-              width: "3px",
-              height: "0.85em",
-              background: "#22d3ee",
-              verticalAlign: "middle",
-              animation: "blink 1s step-end infinite",
-              boxShadow: "0 0 10px #22d3ee",
-            }}
-          />
-        </span>
-      </h1>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/portrait.png"
+              alt="Rizick Portrait"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                filter: "grayscale(100%) contrast(140%) brightness(85%)",
+                mixBlendMode: "screen",
+                opacity: 0.85,
+              }}
+            />
+            {/* Color Overlay for filmic screen effect */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                background: "var(--burnt-orange)",
+                mixBlendMode: "color-burn",
+                pointerEvents: "none",
+              }}
+            />
+          </div>
 
-      {/* Sub */}
-      <p
+          {/* Massive Overlapping Name */}
+          <div
+            style={{
+              position: "absolute",
+              width: "120%",
+              pointerEvents: "none",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+            }}
+          >
+            <h1
+              style={{
+                fontFamily: "var(--font-display)",
+                fontSize: "clamp(48px, 8vw, 110px)",
+                fontWeight: 900,
+                lineHeight: "0.85",
+                letterSpacing: "-0.04em",
+                textShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                textTransform: "uppercase",
+              }}
+            >
+              RIZICK
+              <br />
+              SABILLAH
+            </h1>
+          </div>
+        </div>
+
+        {/* Right Column: Role / Subtitle */}
+        <div
+          className="hero-right-col"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "5rem",
+            justifyContent: "flex-end",
+            alignItems: "flex-end",
+            textAlign: "right",
+            height: "100%",
+          }}
+        >
+          {/* Metadata Block A */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "flex-end" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "13px",
+                fontWeight: 700,
+                textTransform: "uppercase",
+              }}
+            >
+              (A;/)
+            </p>
+            <p
+              style={{
+                fontSize: "12px",
+                lineHeight: "1.5",
+                opacity: 0.9,
+                letterSpacing: "0.02em",
+                textTransform: "uppercase",
+                maxWidth: "280px",
+              }}
+            >
+              A SYSTEM MIND AND A MODERN STACK. SHIPPED SCALABLE BACKENDS, ENTERPRISE SERVICES & PRODUCTION READY APPLICATIONS.
+            </p>
+          </div>
+
+          {/* Typewriter text aligned bottom-right */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+            <p
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "12px",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em",
+                opacity: 0.7,
+                marginBottom: "4px",
+              }}
+            >
+              ACTIVE DIRECTORY
+            </p>
+            <h2
+              style={{
+                fontSize: "clamp(16px, 2.5vw, 24px)",
+                fontWeight: 700,
+                fontFamily: "var(--font-mono)",
+                color: "var(--canary-yellow)",
+              }}
+            >
+              I build{" "}
+              <span style={{ position: "relative" }}>
+                <span>{typed}</span>
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: "2px",
+                    height: "1em",
+                    background: "var(--canary-yellow)",
+                    verticalAlign: "middle",
+                    marginLeft: "2px",
+                    animation: "blink 1s step-end infinite",
+                  }}
+                />
+              </span>
+            </h2>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Scrolling Marquee / Ticker */}
+      <div
         style={{
-          fontSize: "18px",
-          color: "var(--muted)",
-          maxWidth: "540px",
-          lineHeight: 1.6,
-          marginBottom: "3rem",
+          borderTop: "1.5px solid var(--canary-yellow)",
+          borderBottom: "1.5px solid var(--canary-yellow)",
+          padding: "10px 0",
+          margin: "3rem -2rem 0 -2rem",
+          overflow: "hidden",
+          background: "rgba(0,0,0,0.05)",
+          display: "flex",
         }}
       >
-        Specializing in Laravel, CodeIgniter, & Flutter. I&apos;ve shipped production systems
-        handling real users — from B2B platforms to enterprise internal tools
-        consolidating 24 web apps into one.
-      </p>
-
-      {/* CTAs */}
-      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-        <a
-          href="#work"
-          style={{
-            padding: "12px 28px",
-            background: "linear-gradient(135deg, #6366f1 0%, #06b6d4 100%)",
-            color: "white",
-            borderRadius: "8px",
-            fontSize: "14px",
-            fontWeight: 600,
-            boxShadow: "0 4px 20px rgba(99, 102, 241, 0.25)",
-            transition: "transform 0.2s, box-shadow 0.2s",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-            (e.currentTarget as HTMLElement).style.boxShadow = "0 6px 24px rgba(99, 102, 241, 0.45)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-            (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 20px rgba(99, 102, 241, 0.25)";
-          }}
-        >
-          View my work
-        </a>
-        <a
-          href="#contact"
-          style={{
-            padding: "12px 28px",
-            border: "1px solid var(--border)",
-            background: "rgba(255, 255, 255, 0.03)",
-            borderRadius: "8px",
-            fontSize: "14px",
-            fontWeight: 500,
-            color: "var(--fg)",
-            backdropFilter: "blur(8px)",
-            transition: "border-color 0.2s, background-color 0.2s, transform 0.2s",
-          }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor = "rgba(255, 255, 255, 0.25)";
-            (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255, 255, 255, 0.07)";
-            (e.currentTarget as HTMLElement).style.transform = "translateY(-2px)";
-          }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
-            (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(255, 255, 255, 0.03)";
-            (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
-          }}
-        >
-          Get in touch
-        </a>
+        <div className="animate-marquee" style={{ display: "flex", gap: "2rem" }}>
+          {Array(4)
+            .fill(
+              "DYNAMIC BACKENDS · CAREFULLY CONSIDERED ARCHITECTURE · HYBRID MOBILE APPS · INVENTIVE AND SCALABLE · PRODUCTION WORKERS ·"
+            )
+            .map((text, idx) => (
+              <span
+                key={idx}
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "13px",
+                  fontWeight: 700,
+                  letterSpacing: "0.1em",
+                  whiteSpace: "nowrap",
+                  textTransform: "uppercase",
+                }}
+              >
+                {text}
+              </span>
+            ))}
+        </div>
       </div>
 
       <style>{`
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
+        }
+        @media (max-width: 1024px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            gap: 3rem !important;
+          }
+          .hero-right-col {
+            align-items: flex-start !important;
+            text-align: left !important;
+          }
+          .hero-right-col div {
+            align-items: flex-start !important;
+          }
         }
       `}</style>
     </section>

@@ -2,20 +2,73 @@
 
 import { useState, useEffect } from "react";
 
-const links = [
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
-];
+type NavStyle = {
+  text: string;
+  border: string;
+  bg: string;
+};
+
+const THEMES: Record<string, NavStyle> = {
+  hero: {
+    text: "var(--canary-yellow)",
+    border: "rgba(239, 220, 83, 0.2)",
+    bg: "rgba(209, 77, 24, 0.95)"
+  },
+  work: {
+    text: "var(--crimson-red)",
+    border: "rgba(230, 53, 47, 0.2)",
+    bg: "rgba(254, 217, 59, 0.95)"
+  },
+  about: {
+    text: "var(--crimson-red)",
+    border: "rgba(230, 53, 47, 0.2)",
+    bg: "rgba(18, 18, 18, 0.95)"
+  },
+  contact: {
+    text: "var(--crimson-red)",
+    border: "rgba(230, 53, 47, 0.2)",
+    bg: "rgba(250, 240, 230, 0.95)"
+  }
+};
 
 export default function Nav() {
+  const [activeSection, setActiveSection] = useState<string>("hero");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Intersection observer to swap header colors dynamically based on active section
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    const sections = ["hero", "work", "about", "contact"];
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
+
+  const activeTheme = THEMES[activeSection] || THEMES.hero;
 
   return (
     <header
@@ -24,71 +77,64 @@ export default function Nav() {
         top: 0,
         left: 0,
         right: 0,
-        zIndex: 50,
-        padding: "0 2rem",
-        height: "64px",
+        zIndex: 100,
+        padding: "0 2.5rem",
+        height: "60px",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        background: scrolled ? "rgba(11, 12, 16, 0.8)" : "rgba(11, 12, 16, 0)",
-        backdropFilter: "blur(12px)",
-        borderBottom: scrolled ? "1px solid rgba(255, 255, 255, 0.06)" : "1px solid transparent",
-        transition: "background 0.3s, border-color 0.3s",
+        fontFamily: "var(--font-mono)",
+        fontSize: "12px",
+        fontWeight: 500,
+        textTransform: "uppercase",
+        letterSpacing: "0.05em",
+        background: scrolled ? activeTheme.bg : "transparent",
+        borderBottom: `1px solid ${scrolled ? activeTheme.border : "transparent"}`,
+        color: activeTheme.text,
+        transition: "background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease",
       }}
     >
-      <a
-        href="#"
+      {/* Left: Navigation links */}
+      <div style={{ display: "flex", gap: "2.5rem", alignItems: "center" }}>
+        <a href="#hero" style={{ fontWeight: 700 }}>
+          HOME
+        </a>
+        <a href="#work" style={{ textDecoration: activeSection === "work" ? "underline" : "none" }}>
+          PROJECTS
+        </a>
+      </div>
+
+      {/* Center: Territories (Hidden on mobile) */}
+      <div
+        className="nav-territory"
         style={{
-          fontWeight: 700,
-          fontSize: "15px",
-          letterSpacing: "-0.01em",
-          color: "var(--fg)",
+          display: "flex",
+          gap: "0.25rem",
         }}
       >
-        Rizick
-      </a>
-      <nav style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
-        {links.map((l) => (
-          <a
-            key={l.href}
-            href={l.href}
-            style={{
-              fontSize: "14px",
-              color: "var(--muted)",
-              transition: "color 0.15s",
-            }}
-            onMouseEnter={(e) =>
-              ((e.target as HTMLElement).style.color = "var(--fg)")
-            }
-            onMouseLeave={(e) =>
-              ((e.target as HTMLElement).style.color = "var(--muted)")
-            }
-          >
-            {l.label}
-          </a>
-        ))}
+        <span>TERRITORIES</span>
+        <span style={{ opacity: 0.85 }}>[INDONESIA]</span>
+      </div>
+
+      {/* Right: Contact anchor */}
+      <div style={{ display: "flex", gap: "2rem", alignItems: "center" }}>
         <a
           href="https://github.com/Zee7X"
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            fontSize: "13px",
-            padding: "6px 14px",
-            border: "1px solid var(--border)",
-            borderRadius: "6px",
-            color: "var(--fg)",
-            transition: "border-color 0.15s",
-          }}
-          onMouseEnter={(e) =>
-            ((e.target as HTMLElement).style.borderColor = "var(--fg)")
-          }
-          onMouseLeave={(e) =>
-            ((e.target as HTMLElement).style.borderColor = "var(--border)")
-          }
+          style={{ opacity: 0.95 }}
         >
-          GitHub
+          FOLLOW RIZICK [GITHUB]
         </a>
-      </nav>
+      </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .nav-territory {
+            display: none !important;
+          }
+        }
+      `}</style>
     </header>
   );
 }
