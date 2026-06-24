@@ -52,7 +52,7 @@ export default function Contact() {
             <h2
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(42px, 8vw, 92px)",
+                fontSize: "clamp(30px, 7.5vw, 92px)",
                 fontWeight: 900,
                 lineHeight: "0.85",
                 textTransform: "uppercase",

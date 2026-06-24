@@ -124,7 +124,8 @@ export default function Nav() {
           rel="noopener noreferrer"
           style={{ opacity: 0.95 }}
         >
-          FOLLOW RIZICK [GITHUB]
+          <span className="nav-follow-long">FOLLOW RIZICK [GITHUB]</span>
+          <span className="nav-follow-short" style={{ display: "none" }}>GITHUB</span>
         </a>
       </div>
 
@@ -132,6 +133,12 @@ export default function Nav() {
         @media (max-width: 768px) {
           .nav-territory {
             display: none !important;
+          }
+          .nav-follow-long {
+            display: none !important;
+          }
+          .nav-follow-short {
+            display: inline-block !important;
           }
         }
       `}</style>

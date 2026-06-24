@@ -193,7 +193,7 @@ export default function Hero() {
           <div
             style={{
               position: "absolute",
-              width: "120%",
+              width: "100%",
               pointerEvents: "none",
               display: "flex",
               flexDirection: "column",
@@ -205,7 +205,7 @@ export default function Hero() {
             <h1
               style={{
                 fontFamily: "var(--font-display)",
-                fontSize: "clamp(48px, 8vw, 110px)",
+                fontSize: "clamp(34px, 7.5vw, 110px)",
                 fontWeight: 900,
                 lineHeight: "0.85",
                 letterSpacing: "-0.04em",
