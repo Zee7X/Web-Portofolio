@@ -10,6 +10,8 @@ type Project = {
   stack: string[];
   links: { github?: string; live?: string };
   code: string;
+  isPrivate?: boolean;
+  privateReason?: string;
 };
 
 const PROJECTS: Project[] = [
@@ -17,7 +19,7 @@ const PROJECTS: Project[] = [
     name: "Indoconnex",
     tagline: "B2B connection portal",
     description:
-      "A comprehensive B2B business network platform featuring business directory listings, articles, marketplace (Buy & Sell), jobs, products & services, lost & found, and charity modules. Developed a dynamic social ecosystem with an interactive timeline supporting likes, comments, and shares, with real-time notifications powered by Laravel Reverb.",
+      "A comprehensive B2B business network platform featuring directory listings, marketplace, job boards, and structural charity modules. Architected a dynamic real-time social timeline supporting high-concurrency interactions (likes, comments, feeds) powered by a customized Laravel Reverb WebSocket broadcaster.",
     stack: ["Laravel", "Tailwind CSS", "MySQL", "Laravel Reverb"],
     links: { live: "https://www.indoconnex.com/" },
     code: "(I;/)"
@@ -26,16 +28,18 @@ const PROJECTS: Project[] = [
     name: "PLTU S2P Central App",
     tagline: "Enterprise internal platform",
     description:
-      "Worked as a Backend Developer developing CodeIgniter 4 REST APIs to consolidate 24 separate web applications — attendance, environment monitoring, LK3, permits, and more — into a single unified platform for a power plant company. Built role-based access and modular app-switching architectures.",
+      "Consolidated 24 disjointed legacy web tools (permits, environment monitoring, LK3, attendance) into a unified enterprise gateway. Built high-performance REST APIs in CodeIgniter 4 connected to SQL Server, designing a centralized role-based authorization system and a custom modular token switcher to maintain high availability and seamless transitions.",
     stack: ["CodeIgniter 4", "SQL Server", "JavaScript", "REST API"],
     links: {},
-    code: "(S;/)"
+    code: "(S;/)",
+    isPrivate: true,
+    privateReason: "Enterprise internal — not publicly accessible"
   },
   {
     name: "ITO PNC",
     tagline: "Campus profile mobile app",
     description:
-      "Mobile application presenting the campus profile, structure, and information of Politeknik Negeri Cilacap. Built with Flutter to provide a clean, modern, and intuitive user interface for prospective and current students.",
+      "Architected an offline-first Flutter application featuring structured Provider state management to cache campus academic data, routes, and structural profiles locally. Implemented custom canvas rendering for campus navigation mapping and local indexing search, reducing API roundtrips and optimizing data efficiency over low-bandwidth client networks.",
     stack: ["Flutter", "Dart"],
     links: { live: "https://play.google.com/store/apps/details?id=com.pnc.itoapp&hl=id" },
     code: "(M;/)"
@@ -44,10 +48,12 @@ const PROJECTS: Project[] = [
     name: "Indoconnex CMS",
     tagline: "Back-office administration",
     description:
-      "Administrative panel for the B2B network. Built using React and Inertia.js on top of Laravel. Developed a custom CMS builder, SEO configuration, transactional email broadcasting, and strict moderation systems for content compliance (profanity filters) and user verification.",
+      "Engineered a high-integrity back-office CMS using React and Inertia.js integrated into a Laravel core. Designed dynamic SEO meta injectors, safe cPanel deploy pipelines via Cloudflare cache-purging APIs, and a high-performance content moderation filter with regex-based profanity detection algorithms to maintain compliance.",
     stack: ["Laravel", "React", "Inertia.js", "MySQL", "Cloudflare", "cPanel"],
     links: {},
-    code: "(C;/)"
+    code: "(C;/)",
+    isPrivate: true,
+    privateReason: "Enterprise internal — NDA protected"
   },
   {
     name: "Bird-Shop (Kicau Mania)",
@@ -71,7 +77,7 @@ const PROJECTS: Project[] = [
     name: "Sistem Informasi Cuti Pegawai",
     tagline: "HR leave management system",
     description:
-      "Web-based employee leave request and approval system built with Laravel. Features a multi-level authorization flow, leave quota tracking, and comprehensive reporting.",
+      "Developed a secure, transaction-safe HR leave management system using Laravel. Built custom authorization middleware to handle complex multi-tier manager review pipelines, and resolved race conditions in leave quota updates using raw MySQL database locks. Offloaded notification broadcasts and digest generation to asynchronous Laravel queues.",
     stack: ["Laravel", "MySQL", "JavaScript", "HTML", "CSS"],
     links: {
       github: "https://github.com/Zee7X/Sistem-Informasi-Permohonan-Cuti-Pegawai",
@@ -155,19 +161,21 @@ function ProjectSchematic({ code }: { code: string }) {
       return (
         <div style={containerStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(230, 53, 47, 0.3)", paddingBottom: "6px" }}>
-            <span>[APP_VIEW: ITO PNC]</span>
-            <span>DEVICE: MOBILE</span>
+            <span>[SYS_LOG: ITO PNC]</span>
+            <span>PLATFORM: FLUTTER</span>
           </div>
-          <div style={{ flexGrow: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <div style={{ width: "120px", height: "190px", border: "2px solid var(--crimson-red)", borderRadius: "16px", padding: "8px", position: "relative", display: "flex", flexDirection: "column", gap: "6px" }}>
-              <div style={{ width: "30px", height: "4px", background: "var(--crimson-red)", margin: "0 auto 4px auto", borderRadius: "10px" }}></div>
-              <div style={{ fontSize: "9px", textAlign: "center", fontWeight: 700 }}>ITO PNC MOBILE</div>
-              <div style={{ height: "45px", background: "rgba(230, 53, 47, 0.1)", borderRadius: "4px", display: "flex", alignItems: "center", justifyContent: "center" }}><Smartphone size={16} /></div>
-              <div style={{ fontSize: "8px", display: "flex", flexDirection: "column", gap: "2px" }}>
-                <span>■ PROFILE PNC</span>
-                <span>■ CURRICULUM</span>
-                <span>■ CAMPUS ROUTE</span>
-              </div>
+          <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Smartphone size={14} /> <span>Local Cache Database Status</span></div>
+            <div style={{ background: "rgba(230, 53, 47, 0.08)", padding: "8px", borderLeft: "2.5px solid var(--crimson-red)", fontSize: "10px" }}>
+              [PROVIDER] Initializing AcademicState...<br />
+              [SQLITE] Loading cached campus profile: 48 items<br />
+              [ROUTING] campus_map_coords initialized (12 nodes)<br />
+              [CACHE] offline-first storage active.
+            </div>
+            <div style={{ marginTop: "auto", display: "flex", gap: "8px", fontSize: "10px", opacity: 0.85 }}>
+              <span>FLUTTER ENGINE ·</span>
+              <span>PROVIDER STATE ·</span>
+              <span>SQLITE</span>
             </div>
           </div>
         </div>
@@ -205,15 +213,21 @@ function ProjectSchematic({ code }: { code: string }) {
       return (
         <div style={containerStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(230, 53, 47, 0.3)", paddingBottom: "6px" }}>
-            <span>[BACKEND: SUPABASE]</span>
-            <span>ROUTER: GO_ROUTER</span>
+            <span>[SYS_LOG: BIRD SHOP]</span>
+            <span>SUPABASE RLS</span>
           </div>
           <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Database size={14} /> <span>Storage Bucket System</span></div>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Lock size={14} /> <span>RLS Policy: auth.uid() = user_id</span></div>
-            <div style={{ background: "rgba(230, 53, 47, 0.08)", padding: "8px", fontSize: "9px" }}>
-              SECURE BUCKET: bird-images-public<br />
-              STATE MGMT: PROVIDER ENGINE
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Database size={14} /> <span>Table: product_listing</span></div>
+            <div style={{ background: "rgba(230, 53, 47, 0.08)", padding: "8px", borderLeft: "2.5px solid var(--crimson-red)", fontSize: "10px" }}>
+              [RLS POLICY] ON select USING (auth.uid() IS NOT NULL);<br />
+              [RLS POLICY] ON insert WITH CHECK (auth.uid() = seller_id);<br />
+              [STORAGE] Bucket upload: bird-images-public/prod_91.jpg<br />
+              [NAV] go_router: dispatched to /auth/callback
+            </div>
+            <div style={{ marginTop: "auto", display: "flex", gap: "8px", fontSize: "10px", opacity: 0.85 }}>
+              <span>DART SDK ·</span>
+              <span>SUPABASE CLIENT ·</span>
+              <span>PROVIDER</span>
             </div>
           </div>
         </div>
@@ -223,21 +237,21 @@ function ProjectSchematic({ code }: { code: string }) {
       return (
         <div style={containerStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(230, 53, 47, 0.3)", paddingBottom: "6px" }}>
-            <span>[ACCESSIBILITY: FIREBASE]</span>
-            <span>TUNA NETRA MODULE</span>
+            <span>[SYS_LOG: LIT_TUNA_NETRA]</span>
+            <span>FIREBASE FIRESTORE</span>
           </div>
           <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><CheckSquare size={14} /> <span>Screen Reader Compatible</span></div>
-            <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: "4px" }}>
-              <div style={{ display: "flex", gap: "2px", alignItems: "center", height: "40px" }}>
-                <span style={{ width: "2px", height: "20px", background: "var(--crimson-red)" }}></span>
-                <span style={{ width: "2px", height: "35px", background: "var(--crimson-red)" }}></span>
-                <span style={{ width: "2px", height: "15px", background: "var(--crimson-red)" }}></span>
-                <span style={{ width: "2px", height: "40px", background: "var(--crimson-red)" }}></span>
-                <span style={{ width: "2px", height: "28px", background: "var(--crimson-red)" }}></span>
-                <span style={{ width: "2px", height: "10px", background: "var(--crimson-red)" }}></span>
-              </div>
-              <span style={{ fontSize: "9px", opacity: 0.8 }}>TTS WAVEFORM STREAM</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><CheckSquare size={14} /> <span>Accessibility Controller</span></div>
+            <div style={{ background: "rgba(230, 53, 47, 0.08)", padding: "8px", borderLeft: "2.5px solid var(--crimson-red)", fontSize: "10px" }}>
+              [TTS ENGINE] Speak: "Selamat datang di Literasi Digital"<br />
+              [COMPAT] Screen Reader focus: aria-live="assertive"<br />
+              [DB_SYNC] Firestore snap listening: user_progress_db<br />
+              [AUDIO] Waveform frequency output ready: 44.1kHz
+            </div>
+            <div style={{ marginTop: "auto", display: "flex", gap: "8px", fontSize: "10px", opacity: 0.85 }}>
+              <span>TALKBACK SUPPORT ·</span>
+              <span>FIREBASE SDK ·</span>
+              <span>TTS LAYER</span>
             </div>
           </div>
         </div>
@@ -247,18 +261,21 @@ function ProjectSchematic({ code }: { code: string }) {
       return (
         <div style={containerStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(230, 53, 47, 0.3)", paddingBottom: "6px" }}>
-            <span>[HR_SYS: LARAVEL]</span>
-            <span>LEAVE QUOTA</span>
+            <span>[SYS_LOG: LEAVE_MGR]</span>
+            <span>AUTH_FLOW</span>
           </div>
           <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "10px" }}>
-              <span>Employee Leave Request:</span>
-              <span style={{ color: "#34d399" }}>AUTHORIZED</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Server size={14} /> <span>Transaction Isolation Level</span></div>
+            <div style={{ background: "rgba(230, 53, 47, 0.08)", padding: "8px", borderLeft: "2.5px solid var(--crimson-red)", fontSize: "10px" }}>
+              [SQL_TX] START TRANSACTION;<br />
+              [SELECT] SELECT quota FROM employee_leave WHERE id=14 FOR UPDATE;<br />
+              [UPDATE] UPDATE employee_leave SET quota=quota-2 WHERE id=14;<br />
+              [QUEUE] Dispatched Job: LeaveApprovalNotification (Email Queue)
             </div>
-            <div style={{ border: "1px solid rgba(230, 53, 47, 0.25)", padding: "6px", fontSize: "9px" }}>
-              MULTILEVEL APPROVAL FLOW:<br />
-              1. Supervisor Approval {"->"} APPROVED<br />
-              2. HRD Authorization {"->"} PENDING
+            <div style={{ marginTop: "auto", display: "flex", gap: "8px", fontSize: "10px", opacity: 0.85 }}>
+              <span>LARAVEL CORE ·</span>
+              <span>DB LOCK FOR UPDATE ·</span>
+              <span>REDIS QUEUE</span>
             </div>
           </div>
         </div>
@@ -389,6 +406,27 @@ export default function Work() {
                   
                   {/* Custom Action links */}
                   <div style={{ display: "flex", gap: "1rem" }}>
+                    {p.isPrivate && (
+                      <div
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          gap: "6px",
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "10px",
+                          fontWeight: 700,
+                          border: "1px dashed rgba(230, 53, 47, 0.4)",
+                          background: "rgba(230, 53, 47, 0.05)",
+                          padding: "4px 10px",
+                          borderRadius: "4px",
+                          color: "var(--crimson-red)",
+                          letterSpacing: "0.02em",
+                        }}
+                        title={p.privateReason}
+                      >
+                        <Lock size={11} /> {p.privateReason ? p.privateReason.toUpperCase() : "INTERNAL SYSTEM"}
+                      </div>
+                    )}
                     {p.links.github && (
                       <a
                         href={p.links.github}

@@ -10,6 +10,14 @@ export const metadata: Metadata = {
     description:
       "Fullstack developer specializing in Laravel, Flutter, and production web systems.",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Rizick Sabillah — Fullstack Developer & Systems Builder",
+      },
+    ],
   },
 };
 

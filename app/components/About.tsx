@@ -239,7 +239,7 @@ export default function About() {
                 color: "var(--crimson-red)",
               }}
             >
-              STACK & METRICS
+              STACK & EXPERIENCE
             </h2>
           </div>
           <div
@@ -285,7 +285,7 @@ export default function About() {
                   lineHeight: 1.1,
                 }}
               >
-                Building real systems, D3 studies to industry.
+                Engineering systems that bridge logic and value.
               </h3>
             </div>
             
@@ -300,14 +300,13 @@ export default function About() {
               }}
             >
               <p>
-                I&apos;m Rizick, a Fullstack Developer and Informatics Engineering graduate (D3)
-                from Politeknik Negeri Cilacap. I specialize in building robust web backends, B2B portals, and mobile applications, bridging modern frontend interfaces with secure and optimized backend systems.
+                I don&apos;t just write code; I engineer systems designed to resolve actual operational friction. Coming from an associate degree (D3) in Informatics Engineering at Politeknik Negeri Cilacap, I learned early on that software is only as good as the reliability of its data layers and the real-world utility it delivers.
               </p>
               <p>
-                At PT Murni Solusindo Nusantara, I actively develop the Indoconnex B2B connection platform—building the member portal with Laravel and Tailwind CSS, and the CMS panel using React and Inertia.js. Previously, at CV Entwo Electrical & Engineering, I developed CodeIgniter 4 REST APIs to consolidate 24 internal web applications into a single platform (PLTU S2P Central App).
+                At PT Murni Solusindo Nusantara, I develop the Indoconnex B2B connection portal—architecting high-throughput member dashboards with Laravel and styling dynamic interfaces with Tailwind CSS, alongside developing Inertia-driven administrative platforms in React. Previously, at CV Entwo, I led the consolidation of 24 disconnected legacy applications into a high-concurrency API layer for a massive power plant (PLTU S2P Central App).
               </p>
               <p>
-                I also build mobile applications using Flutter (such as an accessibility-focused digital literacy app utilizing Firebase, and an e-commerce application with Supabase), and I am comfortable handling database management, real-time notifications with Laravel Reverb, and deployment workflows.
+                My approach to building software is holistic: from micro-optimizing SQL queries and securing multi-tenant databases, to crafting real-time notification lines with Laravel Reverb, and writing accessible, screen-reader-compatible mobile apps in Flutter. I keep my architectures clean, my protocols secure, and my deployments predictable.
               </p>
             </div>
           </div>

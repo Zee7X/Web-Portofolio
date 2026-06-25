@@ -117,106 +117,149 @@ export default function Hero() {
                 fontFamily: "var(--font-mono)",
                 fontSize: "13px",
                 fontWeight: 700,
-                textTransform: "uppercase",
+                color: "var(--canary-yellow)",
+                opacity: 0.75,
               }}
             >
-              ■ (B;/)
+              ■ (b;/) systems builder
             </p>
             <p
               style={{
-                fontSize: "12px",
-                lineHeight: "1.5",
-                opacity: 0.9,
-                letterSpacing: "0.02em",
-                textTransform: "uppercase",
+                fontSize: "12.5px",
+                lineHeight: "1.6",
+                opacity: 0.7,
+                letterSpacing: "0.01em",
                 maxWidth: "280px",
               }}
             >
-              INVENTIVE AND ROBUST. EVERY LINE OF CODE IS OPTIMIZED TO DRIVE VALUE AND SHAPE HIGH-PERFORMANCE WEB APPLICATIONS.
+              Inventive and robust. Every line of code is optimized to drive value, scale backends, and shape high-performance web applications.
             </p>
           </div>
         </div>
 
-        {/* Center Column: Big Cinematic Portrait & Overlay Text */}
+        {/* Center Column: Portrait, Name & CTA Button */}
         <div
           style={{
             position: "relative",
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            gap: "2.5rem",
             height: "100%",
             minHeight: "450px",
           }}
         >
-          {/* Portrait Image with CSS Filters to integrate with burnt orange background */}
+          {/* Image & Name Wrapper to ensure absolute centering over the face */}
           <div
             style={{
+              position: "relative",
               width: "100%",
               maxWidth: "480px",
-              aspectRatio: "1/1",
-              borderRadius: "12px",
-              overflow: "hidden",
-              position: "relative",
-              boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
-              background: "#000",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/portrait.png"
-              alt="Rizick Portrait"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                filter: "grayscale(100%) contrast(140%) brightness(85%)",
-                mixBlendMode: "screen",
-                opacity: 0.85,
-              }}
-            />
-            {/* Color Overlay for filmic screen effect */}
+            {/* Portrait Image with CSS Filters */}
             <div
               style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                background: "var(--burnt-orange)",
-                mixBlendMode: "color-burn",
-                pointerEvents: "none",
-              }}
-            />
-          </div>
-
-          {/* Massive Overlapping Name */}
-          <div
-            style={{
-              position: "absolute",
-              width: "100%",
-              pointerEvents: "none",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
-            }}
-          >
-            <h1
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(34px, 7.5vw, 110px)",
-                fontWeight: 900,
-                lineHeight: "0.85",
-                letterSpacing: "-0.04em",
-                textShadow: "0 4px 12px rgba(0,0,0,0.15)",
-                textTransform: "uppercase",
+                width: "100%",
+                aspectRatio: "1/1",
+                borderRadius: "12px",
+                overflow: "hidden",
+                position: "relative",
+                boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
+                background: "#000",
               }}
             >
-              RIZICK
-              <br />
-              SABILLAH
-            </h1>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/portrait.png"
+                alt="Rizick Portrait"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  filter: "grayscale(100%) contrast(140%) brightness(85%)",
+                  mixBlendMode: "screen",
+                  opacity: 0.85,
+                }}
+              />
+              {/* Color Overlay for filmic screen effect */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: "var(--burnt-orange)",
+                  mixBlendMode: "color-burn",
+                  pointerEvents: "none",
+                }}
+              />
+            </div>
+
+            {/* Massive Overlapping Name (Centered exactly over the portrait image) */}
+            <div
+              className="hero-name-container"
+              style={{
+                position: "absolute",
+                pointerEvents: "none",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                zIndex: 15,
+              }}
+            >
+              <h1
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(34px, 7.5vw, 110px)",
+                  fontWeight: 900,
+                  lineHeight: "0.85",
+                  letterSpacing: "-0.04em",
+                  textShadow: "0 4px 15px rgba(0,0,0,0.3)",
+                  textTransform: "uppercase",
+                  color: "var(--canary-yellow)",
+                }}
+              >
+                RIZICK
+                <br />
+                SABILLAH
+              </h1>
+            </div>
+          </div>
+
+          {/* Interactive CTA Link */}
+          <div style={{ zIndex: 30 }}>
+            <a
+              href="#work"
+              className="cta-button"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.75rem",
+                padding: "0.85rem 2.25rem",
+                border: "2px solid var(--canary-yellow)",
+                borderRadius: "9999px",
+                fontFamily: "var(--font-mono)",
+                fontSize: "14px",
+                fontWeight: 700,
+                textTransform: "uppercase",
+                color: "var(--canary-yellow)",
+                background: "transparent",
+                cursor: "pointer",
+                boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                textDecoration: "none",
+              }}
+            >
+              <span>Explore Selected Work</span>
+              <span className="cta-arrow" style={{ fontSize: "16px", display: "inline-block" }}>↘</span>
+            </a>
           </div>
         </div>
 
@@ -240,22 +283,22 @@ export default function Hero() {
                 fontFamily: "var(--font-mono)",
                 fontSize: "13px",
                 fontWeight: 700,
-                textTransform: "uppercase",
+                color: "var(--canary-yellow)",
+                opacity: 0.75,
               }}
             >
-              (A;/)
+              (a;/) software architect
             </p>
             <p
               style={{
-                fontSize: "12px",
-                lineHeight: "1.5",
-                opacity: 0.9,
-                letterSpacing: "0.02em",
-                textTransform: "uppercase",
+                fontSize: "12.5px",
+                lineHeight: "1.6",
+                opacity: 0.7,
+                letterSpacing: "0.01em",
                 maxWidth: "280px",
               }}
             >
-              A SYSTEM MIND AND A MODERN STACK. SHIPPED SCALABLE BACKENDS, ENTERPRISE SERVICES & PRODUCTION READY APPLICATIONS.
+              A systems mind and a modern stack. Shipped scalable backends, real-time sync systems, and production-ready applications.
             </p>
           </div>
 
@@ -264,18 +307,18 @@ export default function Hero() {
             <p
               style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "12px",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                opacity: 0.7,
+                fontSize: "11px",
+                textTransform: "lowercase",
+                letterSpacing: "0.05em",
+                opacity: 0.55,
                 marginBottom: "4px",
               }}
             >
-              ACTIVE DIRECTORY
+              active_directory // system_log
             </p>
             <h2
               style={{
-                fontSize: "clamp(16px, 2.5vw, 24px)",
+                fontSize: "clamp(16px, 2.2vw, 22px)",
                 fontWeight: 700,
                 fontFamily: "var(--font-mono)",
                 color: "var(--canary-yellow)",
@@ -341,6 +384,24 @@ export default function Hero() {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
         }
+        .hero-name-container {
+          width: 140%;
+        }
+        .cta-button {
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .cta-button:hover {
+          background: var(--canary-yellow) !important;
+          color: var(--burnt-orange) !important;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
+        }
+        .cta-button:hover .cta-arrow {
+          transform: translate(2px, 2px);
+        }
+        .cta-arrow {
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
         @media (max-width: 1024px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
@@ -352,6 +413,11 @@ export default function Hero() {
           }
           .hero-right-col div {
             align-items: flex-start !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .hero-name-container {
+            width: 100% !important;
           }
         }
       `}</style>
