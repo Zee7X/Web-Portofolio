@@ -77,12 +77,25 @@ const PROJECTS: Project[] = [
     name: "Sistem Informasi Cuti Pegawai",
     tagline: "HR leave management system",
     description:
-      "Developed a secure, transaction-safe HR leave management system using Laravel. Built custom authorization middleware to handle complex multi-tier manager review pipelines, and resolved race conditions in leave quota updates using raw MySQL database locks. Offloaded notification broadcasts and digest generation to asynchronous Laravel queues.",
-    stack: ["Laravel", "MySQL", "JavaScript", "HTML", "CSS"],
+      "Developed a secure, transaction-safe HR leave management system using Laravel. Built custom authorization middleware to handle complex multi-tier manager review pipelines, and resolved race conditions in leave quota updates using raw MySQL database locks. Offloaded notification broadcasts and digest generation to asynchronous Laravel queues. Live demo with pre-filled demo credentials — just hit Login.",
+    stack: ["Laravel", "MySQL", "JavaScript", "HTML", "CSS", "Docker", "Render"],
     links: {
       github: "https://github.com/Zee7X/Sistem-Informasi-Permohonan-Cuti-Pegawai",
+      live: "https://sicute.onrender.com/login?nip=200302094&password=test",
     },
     code: "(R;/)"
+  },
+  {
+    name: "Sistem Informasi BHP Lab",
+    tagline: "Lab consumables inventory system",
+    description:
+      "Inventory management system for laboratory consumables (Bahan Habis Pakai) at Politeknik Negeri Cilacap, covering stock in/out tracking, low-stock alerts, and request approval flows. Built with Laravel, Inertia.js, and React on top of a role-based authorization core, deployed as a Dockerized web service. Live demo with pre-filled admin credentials — just hit Masuk.",
+    stack: ["Laravel", "Inertia.js", "React", "Tailwind CSS", "MySQL", "Docker"],
+    links: {
+      github: "https://github.com/Zee7X/sistem-infromasi-bhp",
+      live: "https://bhp-lab.onrender.com/login?email=admin%40bhp.com&password=12345",
+    },
+    code: "(H;/)"
   },
 ];
 
@@ -276,6 +289,30 @@ function ProjectSchematic({ code }: { code: string }) {
               <span>LARAVEL CORE ·</span>
               <span>DB LOCK FOR UPDATE ·</span>
               <span>REDIS QUEUE</span>
+            </div>
+          </div>
+        </div>
+      );
+
+    case "(H;/)": // BHP Lab
+      return (
+        <div style={containerStyle}>
+          <div style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(230, 53, 47, 0.3)", paddingBottom: "6px" }}>
+            <span>[SYS_LOG: BHP_LAB]</span>
+            <span>INVENTORY CORE</span>
+          </div>
+          <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}><Database size={14} /> <span>Stock Movement Ledger</span></div>
+            <div style={{ background: "rgba(230, 53, 47, 0.08)", padding: "8px", borderLeft: "2.5px solid var(--crimson-red)", fontSize: "10px" }}>
+              [STOCK_IN] SKEMATIK-200mA fuse set +24 unit (OP-2214)<br />
+              [STOCK_OUT] Kabel jumper M-M −12 unit (PRK-0187)<br />
+              [ALERT] threshold breached: multimeter digital &lt; 5 unit<br />
+              [APPROVAL] request #58 → pending lab admin review
+            </div>
+            <div style={{ marginTop: "auto", display: "flex", gap: "8px", fontSize: "10px", opacity: 0.85 }}>
+              <span>LARAVEL ·</span>
+              <span>INERTIA + REACT ·</span>
+              <span>DOCKER/RENDER</span>
             </div>
           </div>
         </div>
